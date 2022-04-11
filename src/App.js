@@ -6,6 +6,20 @@ import Teachers from './Teachers';
 import './style.css';
 import { myContext } from './Context';
 export default function App() {
+  const [studentLabels, setStudentLabels] = useState([
+    'id',
+    'first name',
+    'last name',
+    'gender',
+    'marks',
+  ]);
+  const [teacherLabels, setTeacherLabels] = useState([
+    'id',
+    'first name',
+    'last name',
+    'gender',
+    'department',
+  ]);
   const [students, setStudents] = useState([
     {
       id: 1,
@@ -69,7 +83,14 @@ export default function App() {
   return (
     <div>
       <myContext.Provider
-        value={{ students, setStudents, teachers, setTeachers }}
+        value={{
+          studentLabels,
+          teacherLabels,
+          students,
+          setStudents,
+          teachers,
+          setTeachers,
+        }}
       >
         <BrowserRouter>
           <Routes>

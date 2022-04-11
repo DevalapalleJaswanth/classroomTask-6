@@ -1,8 +1,83 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { myContext } from './Context';
+import { Table } from './Components';
 export default function Home() {
   const context = useContext(myContext);
-  const { students, teachers, setStudents, setTeachers } = context;
+  const {
+    studentLabels,
+    teacherLabels,
+    students,
+    teachers,
+    setStudents,
+    setTeachers,
+  } = context;
+  const [StudentActions, setStudentActions] = useState([
+    {
+      title: 'Edit',
+      action: (obj) => {
+        navigate('/Form', {
+          state: {
+            obj: obj,
+            type: 'edit',
+            action: (data) => {
+              let temp = students.map((ele) => {
+                if (ele.id === data.id) {
+                  return data;
+                }
+                return ele;
+              });
+              setStudents([...temp]);
+            },
+          },
+        });
+      },
+    },
+    {
+      title: 'Delete',
+      action: (obj) => {
+        let temp = students.filter((ele) => {
+          if (ele.id !== obj.id) {
+            return ele;
+          }
+        });
+        setStudents([...temp]);
+      },
+    },
+  ]);
+  const [TeacherActions, setTeacherActions] = useState([
+    {
+      title: 'Edit',
+      action: (obj) => {
+        navigate('/Form', {
+          state: {
+            obj: obj,
+            type: 'edit',
+            action: (data) => {
+              let temp = teachers.map((ele) => {
+                if (ele.id === data.id) {
+                  return data;
+                }
+                return ele;
+              });
+              setStudents([...temp]);
+            },
+          },
+        });
+      },
+    },
+    {
+      title: 'Delete',
+      action: (obj) => {
+        let temp = teachers.filter((ele) => {
+          if (ele.id !== obj.id) {
+            return ele;
+          }
+        });
+        setStudents([...temp]);
+      },
+    },
+  ]);
+
   return (
     <div
       style={{
@@ -14,72 +89,18 @@ export default function Home() {
       }}
     >
       Dashboard
-      <div>
-        Students
-        <table border="2px">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Gender</th>
-              <th>Marks</th>
-              <th colspan="2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {students &&
-              students.map((ele, i) => (
-                <tr key={i}>
-                  <td>{ele.id}</td>
-                  <td>{ele.firstName}</td>
-                  <td>{ele.lastName}</td>
-                  <td>{ele.gender}</td>
-                  <td>{ele.marks}</td>
-                  <td>
-                    <button>Edit</button>
-                  </td>
-                  <td>
-                    <button>Delete</button>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      </div>
-      <div>
-        Teachers
-        <table border="2px">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Gender</th>
-              <th>Department</th>
-              <th colspan="2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {teachers &&
-              teachers.map((ele, i) => (
-                <tr key={i}>
-                  <td>{ele.id}</td>
-                  <td>{ele.firstName}</td>
-                  <td>{ele.lastName}</td>
-                  <td>{ele.gender}</td>
-                  <td>{ele.department}</td>
-                  <td>
-                    <button>Edit</button>
-                  </td>
-                  <td>
-                    <button>Delete</button>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      </div>
+      <Table
+        data={students}
+        labels={studentLabels}
+        actions={StudentActions}
+        title={'Students'}
+      />
+      <Table
+        data={teachers}
+        labels={teacherLabels}
+        actions={TeacherActions}
+        title={'Teachers'}
+      />
     </div>
   );
 }
