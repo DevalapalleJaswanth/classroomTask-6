@@ -80,6 +80,73 @@ export default function App() {
       department: 'Chemistry',
     },
   ]);
+  const [studentActions, setStudentActions] = useState([
+    {
+      title: 'Edit',
+      action: (obj) => {
+        navigate('/Form', {
+          state: {
+            obj: obj,
+            type: 'edit',
+            action: (item) => {
+              let temp = data.map((ele) => {
+                if (ele.id === item.id) {
+                  return data;
+                }
+                return ele;
+              });
+              setStudents([...temp]);
+            },
+          },
+        });
+      },
+    },
+    {
+      title: 'Delete',
+      action: (obj, data) => {
+        let temp = data.filter((ele) => {
+          if (ele.id !== obj.id) {
+            return ele;
+          }
+        });
+        setStudents([...temp]);
+      },
+    },
+  ]);
+  const [teacherActions, setTeacherActions] = useState([
+    {
+      title: 'Edit',
+      action: (obj, data) => {
+        navigate('/Form', {
+          state: {
+            obj: obj,
+            type: 'edit',
+            action: (item) => {
+              let temp = data.map((ele) => {
+                if (ele.id === item.id) {
+                  return item;
+                }
+                return ele;
+              });
+              setTeachers([...temp]);
+            },
+          },
+        });
+      },
+    },
+    {
+      title: 'Delete',
+      action: (obj, data) => {
+        let temp = data.filter((ele, i) => {
+          if (ele.id !== obj.id) {
+            return ele;
+          }
+        });
+        console.log(temp);
+        setTeachers([...temp]);
+      },
+    },
+  ]);
   return (
     <div>
       <myContext.Provider
@@ -90,6 +157,8 @@ export default function App() {
           setStudents,
           teachers,
           setTeachers,
+          studentActions,
+          teacherActions,
         }}
       >
         <BrowserRouter>

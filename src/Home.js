@@ -10,73 +10,9 @@ export default function Home() {
     teachers,
     setStudents,
     setTeachers,
+    studentActions,
+    teacherActions,
   } = context;
-  const [StudentActions, setStudentActions] = useState([
-    {
-      title: 'Edit',
-      action: (obj) => {
-        navigate('/Form', {
-          state: {
-            obj: obj,
-            type: 'edit',
-            action: (data) => {
-              let temp = students.map((ele) => {
-                if (ele.id === data.id) {
-                  return data;
-                }
-                return ele;
-              });
-              setStudents([...temp]);
-            },
-          },
-        });
-      },
-    },
-    {
-      title: 'Delete',
-      action: (obj) => {
-        let temp = students.filter((ele) => {
-          if (ele.id !== obj.id) {
-            return ele;
-          }
-        });
-        setStudents([...temp]);
-      },
-    },
-  ]);
-  const [TeacherActions, setTeacherActions] = useState([
-    {
-      title: 'Edit',
-      action: (obj) => {
-        navigate('/Form', {
-          state: {
-            obj: obj,
-            type: 'edit',
-            action: (data) => {
-              let temp = teachers.map((ele) => {
-                if (ele.id === data.id) {
-                  return data;
-                }
-                return ele;
-              });
-              setStudents([...temp]);
-            },
-          },
-        });
-      },
-    },
-    {
-      title: 'Delete',
-      action: (obj) => {
-        let temp = teachers.filter((ele) => {
-          if (ele.id !== obj.id) {
-            return ele;
-          }
-        });
-        setStudents([...temp]);
-      },
-    },
-  ]);
 
   return (
     <div
@@ -92,13 +28,13 @@ export default function Home() {
       <Table
         data={students}
         labels={studentLabels}
-        actions={StudentActions}
+        actions={studentActions}
         title={'Students'}
       />
       <Table
         data={teachers}
         labels={teacherLabels}
-        actions={TeacherActions}
+        actions={teacherActions}
         title={'Teachers'}
       />
     </div>

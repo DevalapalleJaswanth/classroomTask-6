@@ -1,6 +1,8 @@
 import React from 'react';
 export default function Table({ title, labels, data, actions }) {
-  let keys = Object.keys(data[0]);
+  let keys = data[0] && Object.keys(data[0]);
+
+  console.log(data);
   return (
     <div>
       {title && title}
@@ -26,7 +28,7 @@ export default function Table({ title, labels, data, actions }) {
                       <button
                         key={k}
                         onClick={() => {
-                          item.action(ele);
+                          item.action(ele, data);
                         }}
                       >
                         {item.title}
