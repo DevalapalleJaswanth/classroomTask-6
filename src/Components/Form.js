@@ -11,7 +11,7 @@ export default function Form() {
   const [presentData, setPresentData] = useState(data && [...data]);
   const [state, setState] = useState({});
   const [errors, setErrors] = useState({});
-  console.log(location, obj, keys, state);
+  //console.log(location, obj, keys, state);
   useEffect(() => {
     let tempstate = {};
     let temperror = {};

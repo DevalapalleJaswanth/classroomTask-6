@@ -12,7 +12,6 @@ export default function App() {
     'last name',
     'gender',
     'marks',
-    'assined to',
   ]);
   const [teacherLabels, setTeacherLabels] = useState([
     'id',
@@ -60,14 +59,6 @@ export default function App() {
       lastName: 'Renolds',
       gender: 'male',
       marks: '1000',
-      assignedTo:
-        teachers[0] &&
-        teachers[0].firstName &&
-        teachers[0].lastName &&
-        teachers[0].firstName == 'Ronald' &&
-        teachers[0].lastName == 'Darcy'
-          ? 'Ronald Darcy'
-          : 'none',
     },
     {
       id: 2,
@@ -75,14 +66,6 @@ export default function App() {
       lastName: 'Renolds',
       gender: 'female',
       marks: '100',
-      assignedTo:
-        teachers[1] &&
-        teachers[1].firstName &&
-        teachers[1].lastName &&
-        teachers[1].firstName == 'Mary' &&
-        teachers[1].lastName == 'Crow'
-          ? 'Mary Crow'
-          : 'none',
     },
     {
       id: 3,
@@ -90,14 +73,6 @@ export default function App() {
       lastName: 'Jane',
       gender: 'female',
       marks: '900',
-      assignedTo:
-        teachers[2] &&
-        teachers[2].firstName &&
-        teachers[2].lastName &&
-        teachers[2].firstName == 'Mary' &&
-        teachers[2].lastName == 'Janner'
-          ? 'Mary Janner'
-          : 'none',
     },
     {
       id: 4,
@@ -105,14 +80,6 @@ export default function App() {
       lastName: 'Parker',
       gender: 'male',
       marks: '1000',
-      assignedTo:
-        teachers[3] &&
-        teachers[3].firstName &&
-        teachers[3].lastName &&
-        teachers[3].firstName == 'Peter' &&
-        teachers[3].lastName == 'Henson'
-          ? 'Peter Henson'
-          : 'none',
     },
   ]);
 
