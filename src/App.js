@@ -1,8 +1,6 @@
 import React, { createContext, useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './Home';
-import Students from './Students';
-import Teachers from './Teachers';
 import { Form } from './Components';
 import './style.css';
 import { myContext } from './Context';
