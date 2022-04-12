@@ -11,7 +11,7 @@ export default function Table({ title, labels, data, actions }) {
 
   return (
     <div>
-      {title && title}
+      {title && title}&nbsp; &nbsp;
       <button
         onClick={() => {
           actions && actions[0].action({}, data);

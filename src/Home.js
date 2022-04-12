@@ -13,6 +13,7 @@ export default function Home() {
     setStudents,
     setTeachers,
   } = context;
+  const [show, setShow] = useState(true);
   const [studentActions, setStudentActions] = useState([
     {
       title: 'Create',
@@ -103,18 +104,27 @@ export default function Home() {
       }}
     >
       Dashboard
-      <Table
-        data={students}
-        labels={studentLabels}
-        actions={studentActions}
-        title={'Students'}
-      />
-      <Table
-        data={teachers}
-        labels={teacherLabels}
-        actions={teacherActions}
-        title={'Teachers'}
-      />
+      <div>
+        <button onClick={() => setShow(true)}>Students Data</button> &nbsp;
+        &nbsp;
+        <button onClick={() => setShow(false)}>Teachers Data</button>
+      </div>
+      {show && (
+        <Table
+          data={students}
+          labels={studentLabels}
+          actions={studentActions}
+          title={'Students'}
+        />
+      )}
+      {!show && (
+        <Table
+          data={teachers}
+          labels={teacherLabels}
+          actions={teacherActions}
+          title={'Teachers'}
+        />
+      )}
     </div>
   );
 }

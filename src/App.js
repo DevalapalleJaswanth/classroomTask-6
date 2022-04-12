@@ -12,6 +12,7 @@ export default function App() {
     'last name',
     'gender',
     'marks',
+    'assined to',
   ]);
   const [teacherLabels, setTeacherLabels] = useState([
     'id',
@@ -20,36 +21,7 @@ export default function App() {
     'gender',
     'department',
   ]);
-  const [students, setStudents] = useState([
-    {
-      id: 1,
-      firstName: 'Rey',
-      lastName: 'Renolds',
-      gender: 'male',
-      marks: '1000',
-    },
-    {
-      id: 2,
-      firstName: 'Mary',
-      lastName: 'Renolds',
-      gender: 'female',
-      marks: '100',
-    },
-    {
-      id: 3,
-      firstName: 'Mary',
-      lastName: 'Jane',
-      gender: 'female',
-      marks: '900',
-    },
-    {
-      id: 4,
-      firstName: 'Peter',
-      lastName: 'Parker',
-      gender: 'male',
-      marks: '1000',
-    },
-  ]);
+
   const [teachers, setTeachers] = useState([
     {
       id: 1,
@@ -61,7 +33,7 @@ export default function App() {
     {
       id: 2,
       firstName: 'Mary',
-      lastName: 'crow',
+      lastName: 'Crow',
       gender: 'female',
       department: 'Pshycology',
     },
@@ -81,6 +53,69 @@ export default function App() {
     },
   ]);
 
+  const [students, setStudents] = useState([
+    {
+      id: 1,
+      firstName: 'Rey',
+      lastName: 'Renolds',
+      gender: 'male',
+      marks: '1000',
+      assignedTo:
+        teachers[0] &&
+        teachers[0].firstName &&
+        teachers[0].lastName &&
+        teachers[0].firstName == 'Ronald' &&
+        teachers[0].lastName == 'Darcy'
+          ? 'Ronald Darcy'
+          : 'none',
+    },
+    {
+      id: 2,
+      firstName: 'Mary',
+      lastName: 'Renolds',
+      gender: 'female',
+      marks: '100',
+      assignedTo:
+        teachers[1] &&
+        teachers[1].firstName &&
+        teachers[1].lastName &&
+        teachers[1].firstName == 'Mary' &&
+        teachers[1].lastName == 'Crow'
+          ? 'Mary Crow'
+          : 'none',
+    },
+    {
+      id: 3,
+      firstName: 'Mary',
+      lastName: 'Jane',
+      gender: 'female',
+      marks: '900',
+      assignedTo:
+        teachers[2] &&
+        teachers[2].firstName &&
+        teachers[2].lastName &&
+        teachers[2].firstName == 'Mary' &&
+        teachers[2].lastName == 'Janner'
+          ? 'Mary Janner'
+          : 'none',
+    },
+    {
+      id: 4,
+      firstName: 'Peter',
+      lastName: 'Parker',
+      gender: 'male',
+      marks: '1000',
+      assignedTo:
+        teachers[3] &&
+        teachers[3].firstName &&
+        teachers[3].lastName &&
+        teachers[3].firstName == 'Peter' &&
+        teachers[3].lastName == 'Henson'
+          ? 'Peter Henson'
+          : 'none',
+    },
+  ]);
+
   return (
     <div>
       <myContext.Provider
@@ -97,8 +132,6 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Form" element={<Form />} />
-            <Route path="/Students" element={<Students />} />
-            <Route path="/Teachers" element={<Teachers />} />
           </Routes>
         </BrowserRouter>
       </myContext.Provider>

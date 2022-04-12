@@ -93,7 +93,10 @@ export default function Form() {
       >
         Back
       </button>
-      <h3> Form </h3>
+      <h3>
+        {' '}
+        {actionOn && actionOn.toUpperCase()} {type && type.toUpperCase()} FORM{' '}
+      </h3>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
           <label> First Name: </label>
