@@ -1,11 +1,24 @@
 import React from 'react';
 export default function Table({ title, labels, data, actions }) {
   let keys = data[0] && Object.keys(data[0]);
+  let dataActions =
+    actions &&
+    actions.filter((ele, i) => {
+      if (i !== 0) {
+        return ele;
+      }
+    });
 
-  console.log(data);
   return (
     <div>
       {title && title}
+      <button
+        onClick={() => {
+          actions && actions[0].action({}, data);
+        }}
+      >
+        {actions && actions[0].title}
+      </button>
       <table border="2px">
         <thead>
           <tr>
@@ -22,8 +35,8 @@ export default function Table({ title, labels, data, actions }) {
               <tr key={i}>
                 {keys &&
                   keys.map((item, j) => <td key={j}>{ele[`${item}`]}</td>)}
-                {actions &&
-                  actions.map((item, k) => (
+                {dataActions &&
+                  dataActions.map((item, k) => (
                     <td>
                       <button
                         key={k}

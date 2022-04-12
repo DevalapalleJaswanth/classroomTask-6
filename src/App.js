@@ -3,8 +3,10 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './Home';
 import Students from './Students';
 import Teachers from './Teachers';
+import { Form } from './Components';
 import './style.css';
 import { myContext } from './Context';
+
 export default function App() {
   const [studentLabels, setStudentLabels] = useState([
     'id',
@@ -80,73 +82,7 @@ export default function App() {
       department: 'Chemistry',
     },
   ]);
-  const [studentActions, setStudentActions] = useState([
-    {
-      title: 'Edit',
-      action: (obj) => {
-        navigate('/Form', {
-          state: {
-            obj: obj,
-            type: 'edit',
-            action: (item) => {
-              let temp = data.map((ele) => {
-                if (ele.id === item.id) {
-                  return data;
-                }
-                return ele;
-              });
-              setStudents([...temp]);
-            },
-          },
-        });
-      },
-    },
-    {
-      title: 'Delete',
-      action: (obj, data) => {
-        let temp = data.filter((ele) => {
-          if (ele.id !== obj.id) {
-            return ele;
-          }
-        });
-        setStudents([...temp]);
-      },
-    },
-  ]);
-  const [teacherActions, setTeacherActions] = useState([
-    {
-      title: 'Edit',
-      action: (obj, data) => {
-        navigate('/Form', {
-          state: {
-            obj: obj,
-            type: 'edit',
-            action: (item) => {
-              let temp = data.map((ele) => {
-                if (ele.id === item.id) {
-                  return item;
-                }
-                return ele;
-              });
-              setTeachers([...temp]);
-            },
-          },
-        });
-      },
-    },
-    {
-      title: 'Delete',
-      action: (obj, data) => {
-        let temp = data.filter((ele, i) => {
-          if (ele.id !== obj.id) {
-            return ele;
-          }
-        });
-        console.log(temp);
-        setTeachers([...temp]);
-      },
-    },
-  ]);
+
   return (
     <div>
       <myContext.Provider
@@ -157,13 +93,12 @@ export default function App() {
           setStudents,
           teachers,
           setTeachers,
-          studentActions,
-          teacherActions,
         }}
       >
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/Form" element={<Form />} />
             <Route path="/Students" element={<Students />} />
             <Route path="/Teachers" element={<Teachers />} />
           </Routes>
